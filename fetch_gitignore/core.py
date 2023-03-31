@@ -1,3 +1,4 @@
+import os
 import sys
 import requests
 import argparse
@@ -54,8 +55,15 @@ def main():
         action="store_true",
         help="Untrack gitignored files",
     )
+    parser.add_argument(
+        "--replace", action="store_true", help="Replace existing .gitignore file"
+    )
 
     args = parser.parse_args()
+
+    if os.path.exists(".gitignore") and not args.replace:
+        print(".gitignore already exists. Use --replace to overwrite.")
+        sys.exit(1)
 
     gitignore_patterns = fetch_gitignore(args.language)
 
@@ -64,7 +72,9 @@ def main():
     if args.untrack_gitignored_files:
         untrack_gitignored_files(repo, gitignore_patterns)
     else:
-        tracked_gitignored_files = list_tracked_gitignored_files(repo, gitignore_patterns)
+        tracked_gitignored_files = list_tracked_gitignored_files(
+            repo, gitignore_patterns
+        )
         if tracked_gitignored_files:
             print("Tracked gitignored files:")
             for file in tracked_gitignored_files:
