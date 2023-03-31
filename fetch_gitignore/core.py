@@ -49,7 +49,9 @@ def untrack_gitignored_files(repo, gitignore_patterns) -> int:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch and handle .gitignore")
+    parser = argparse.ArgumentParser(
+        description="Fetch .gitignore, optionally untracking gitignored files."
+    )
     parser.add_argument("language", help="Language for .gitignore")
     parser.add_argument(
         "--untrack-gitignored-files",
@@ -57,10 +59,12 @@ def main():
         help="Untrack gitignored files",
     )
     parser.add_argument(
-        "--replace", action="store_true", help="Replace existing .gitignore file"
+        "--replace", action="store_true", help="Replace existing .gitignore file."
     )
     parser.add_argument(
-        "--commit", action="store_true", help="Create a commit after downloading .gitignore, and after untracking files."
+        "--commit",
+        action="store_true",
+        help="Create a commit after downloading .gitignore, and after untracking files.",
     )
 
     args = parser.parse_args()
