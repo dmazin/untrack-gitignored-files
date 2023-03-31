@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="fetch-gitignore",
-    version="0.3.0",
+    version="0.4.0",
     description="A command-line tool to download .gitignore files for specific languages from GitHub",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
@@ -17,6 +17,7 @@ setup(
     },
     install_requires=[
         "requests",
+        "gitpython",
     ],
     classifiers=[
         "Development Status :: 3 - Alpha",
