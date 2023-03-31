@@ -6,7 +6,7 @@ import fnmatch
 from git.repo import Repo
 
 
-def fetch_gitignore(language):
+def fetch_gitignore(repo, language):
     base_url = "https://raw.githubusercontent.com/github/gitignore/master/"
     file_name = f"{language}.gitignore"
 
@@ -34,17 +34,18 @@ def list_tracked_gitignored_files(repo, gitignore_patterns):
     return tracked_gitignored_files
 
 
-def untrack_gitignored_files(repo, gitignore_patterns):
+def untrack_gitignored_files(repo, gitignore_patterns) -> int:
     tracked_gitignored_files = list_tracked_gitignored_files(repo, gitignore_patterns)
     if not tracked_gitignored_files:
         print("No tracked gitignored files found.")
-        return
+        return 0
 
-    for file in tracked_gitignored_files:
-        repo.index.remove([file], working_tree=True)
-        print(f"Untracked {file}.")
+    for file_tuple in tracked_gitignored_files:
+        file_path = file_tuple[0]
+        repo.index.remove([file_path], working_tree=True)
+        print(f"Untracked {file_path}.")
 
-    repo.index.commit("Untracked gitignored files.")
+    return len(tracked_gitignored_files)
 
 
 def main():
@@ -58,6 +59,9 @@ def main():
     parser.add_argument(
         "--replace", action="store_true", help="Replace existing .gitignore file"
     )
+    parser.add_argument(
+        "--commit", action="store_true", help="Create a commit after downloading .gitignore, and after untracking files."
+    )
 
     args = parser.parse_args()
 
@@ -65,12 +69,16 @@ def main():
         print(".gitignore already exists. Use --replace to overwrite.")
         sys.exit(1)
 
-    gitignore_patterns = fetch_gitignore(args.language)
-
     repo = Repo(".")
 
+    gitignore_patterns = fetch_gitignore(repo, args.language)
+    if args.commit:
+        repo.index.commit("Added .gitignore for {args.language}.")
+
     if args.untrack_gitignored_files:
-        untrack_gitignored_files(repo, gitignore_patterns)
+        num_files_untracked: int = untrack_gitignored_files(repo, gitignore_patterns)
+        if args.commit and num_files_untracked > 0:
+            repo.index.commit("Untracked gitignored files.")
     else:
         tracked_gitignored_files = list_tracked_gitignored_files(
             repo, gitignore_patterns
