@@ -1,6 +1,7 @@
 import sys
 import requests
 
+
 def fetch_gitignore(language):
     base_url = "https://raw.githubusercontent.com/github/gitignore/master/"
     file_name = f"{language}.gitignore"
@@ -14,10 +15,10 @@ def fetch_gitignore(language):
     else:
         print(f"Error: {language} .gitignore not found.")
 
+
 def main():
     if len(sys.argv) > 1:
         language = sys.argv[1]
         fetch_gitignore(language)
     else:
         print("Usage: fetch-gitignore <language>")
-
