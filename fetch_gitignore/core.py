@@ -3,7 +3,7 @@ import sys
 import requests
 import argparse
 import fnmatch
-from git import Repo
+from git.repo import Repo
 
 
 def fetch_gitignore(language):
