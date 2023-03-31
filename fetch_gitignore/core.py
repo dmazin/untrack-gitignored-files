@@ -25,8 +25,9 @@ def list_tracked_gitignored_files(repo, gitignore_patterns):
     tracked_gitignored_files = []
 
     for file in repo.index.entries.keys():
+        file_path = file[0]
         for pattern in gitignore_patterns:
-            if fnmatch.fnmatch(file, pattern):
+            if fnmatch.fnmatch(file_path, pattern):
                 tracked_gitignored_files.append(file)
 
     return tracked_gitignored_files
@@ -35,7 +36,7 @@ def list_tracked_gitignored_files(repo, gitignore_patterns):
 def untrack_gitignored_files(repo, gitignore_patterns):
     tracked_gitignored_files = list_tracked_gitignored_files(repo, gitignore_patterns)
     if not tracked_gitignored_files:
-        print("No files to untrack.")
+        print("No tracked gitignored files found.")
         return
 
     for file in tracked_gitignored_files:
@@ -67,7 +68,7 @@ def main():
         if tracked_gitignored_files:
             print("Tracked gitignored files:")
             for file in tracked_gitignored_files:
-                print(f"  {file}")
+                print(f"{file[0]}")
         else:
             print("No tracked gitignored files found.")
 
