@@ -14,9 +14,10 @@ def fetch_gitignore(language):
     else:
         print(f"Error: {language} .gitignore not found.")
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) > 1:
         language = sys.argv[1]
         fetch_gitignore(language)
     else:
-        print("Usage: python fetch-gitignore.py <language>")
+        print("Usage: fetch-gitignore <language>")
+
