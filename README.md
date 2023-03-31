@@ -1,7 +1,5 @@
 # fetch-gitignore
-
-A script to downl Otherwise, an error. Otherwise, an error.oad .gitignore files from GitHub.
-Fetch .gitignore, optionally untracking gitignored files.
+Fetch .gitignore from https://github.com/github/gitignore, optionally untracking gitignored files.
 
 ## Installation
 
