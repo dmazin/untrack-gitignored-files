@@ -4,7 +4,7 @@ setup(
     name="fetch-gitignore",
     version="0.1.0",
     description="A command-line tool to download .gitignore files for specific languages from GitHub",
-    # long_description=open("README.md").read(),
+    long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="Dmitry Mazin",
     author_email="dm@cyberdemon.org",
