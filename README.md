@@ -1,5 +1,5 @@
 # untrack-gitignored-files
-Fetch .gitignore from https://github.com/github/gitignore, optionally untracking gitignored files.
+A command-line tool to list and untrack gitignored files.
 
 ## Installation
 
@@ -10,14 +10,8 @@ pip install untrack-gitignored-files
 ## Usage
 
 ```bash
-positional arguments:
-  language              Language for .gitignore
-
 options:
-  -h, --help            show this help message and exit
-  --untrack-gitignored-files
-                        Untrack gitignored files
-  --replace             Replace existing .gitignore file.
-  --commit              Create a commit after downloading .gitignore, and after untracking
-                        files.
+  -h, --help  show this help message and exit
+  --doit      Actually untrack gitignored files.
+  --commit    Create a commit after untracking files.
 ```
