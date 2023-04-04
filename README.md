@@ -1,10 +1,10 @@
-# fetch-gitignore
+# untrack-gitignored-files
 Fetch .gitignore from https://github.com/github/gitignore, optionally untracking gitignored files.
 
 ## Installation
 
 ```bash
-pip install fetch-gitignore
+pip install untrack-gitignored-files
 ```
 
 ## Usage

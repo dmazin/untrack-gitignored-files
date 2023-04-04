@@ -1,22 +1,21 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="fetch-gitignore",
-    version='0.4.1',
-    description="A command-line tool to download .gitignore files for specific languages from GitHub",
+    name="untrack-gitignored-files",
+    version="0.4.1",
+    description="A command-line tool to list and untrack gitignored files.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="Dmitry Mazin",
     author_email="dm@cyberdemon.org",
-    url="https://github.com/dmazin/fetch-gitignore",
+    url="https://github.com/dmazin/untrack-gitignored-files",
     packages=find_packages(),
     entry_points={
         "console_scripts": [
-            "fetch-gitignore=fetch_gitignore.core:main",
+            "untrack-gitignored-files=untrack_gitignored.files.core:main",
         ],
     },
     install_requires=[
-        "requests",
         "gitpython",
     ],
     classifiers=[
