@@ -12,7 +12,7 @@ setup(
     packages=find_packages(),
     entry_points={
         "console_scripts": [
-            "untrack-gitignored-files=untrack_gitignored.files.core:main",
+            "untrack-gitignored-files=untrack_gitignored_files.core:main",
         ],
     },
     install_requires=[
