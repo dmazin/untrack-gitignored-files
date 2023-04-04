@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="untrack-gitignored-files",
-    version="0.4.1",
+    version='0.5.0',
     description="A command-line tool to list and untrack gitignored files.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
