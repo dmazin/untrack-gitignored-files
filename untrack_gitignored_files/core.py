@@ -70,6 +70,8 @@ def main():
             )
             if args.commit and num_files_untracked > 0:
                 repo.index.commit("Untracked gitignored files.")
+        else:
+            print("Run with --doit to untrack gitignored files. Pass --commit to create a commit after untracking files.")
     else:
         print("No tracked gitignored files found.")
 
